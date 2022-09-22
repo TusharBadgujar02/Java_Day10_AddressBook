@@ -1,7 +1,7 @@
 package addressbookdemo;
 
 public class Contacts {
-	public String firstN, lastN, address, city, state, email, zip, phN;
+	String firstN, lastN, address, city, state, email, zip, phN;
 	
 	public String getFirstN() {
 		return firstN;
@@ -50,5 +50,5 @@ public class Contacts {
 	}
 	public void setPhN(String phN) {
 		this.phN = phN;
-	}
+	}	
 }
