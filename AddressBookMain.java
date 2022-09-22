@@ -13,7 +13,7 @@ public static void main(String[] args) {
 		
 		while(!ch.equals('q')) {
 			
-			 System.out.print("\n a) Add \n e) Edit \n q) Quit \nEnter a character: ");
+			 System.out.print("\n a) Add \n d) Delete \n e) Edit \n q) Quit \nEnter a character: ");
 		      ch = sc.next().charAt(0);
 		      
 		      switch (ch) {
@@ -30,6 +30,10 @@ public static void main(String[] args) {
 		        	 con.editContact(contactList);
 		        	 System.out.println("Contact has been edited");
 		        	 con.displayContact(c2);
+		        	 break;
+		        	 
+		        case 'd' :
+		        	 con.deleteContact(contactList);
 		        	 break;
 
 		        case 'q':
@@ -52,6 +56,7 @@ interface AddressBookServices {
 	public Contacts createContact();
 	public void displayContact(Contacts con);
 	public void editContact(ArrayList<Contacts> contactList);
+	public void deleteContact(ArrayList<Contacts> contactList);
 	
 }
 
@@ -131,7 +136,31 @@ class AddressBookServImpl implements AddressBookServices {
 		
 		return -1;
 	}
+	
+	@Override
+	public void deleteContact(ArrayList<Contacts> contactList) {
+		if(contactList.size() == 0)
+		{
+			System.out.println("First add a contact");
+			return;
+		}
+		System.out.print("Your existing contacts are : " );
+		for(Contacts c: contactList) {
+			System.out.print(c.getFirstN() + " ");
+		}
 		
-
-
+		System.out.print("Enter name of contact you wanna delete : ");
+		String firstN = sc.nextLine(); 
+		
+		int index = checkContact(contactList, firstN);
+		if(index == -1)
+		{
+			System.out.println("name not found");
+		
+		}else {
+			
+			contactList.remove(index);
+			System.out.println("Contact " + firstN + " has been deleted");
+		}
+	      }
 		}
